@@ -59,7 +59,7 @@ from auth import (
     require_login,
 )
 
-load_dotenv()
+load_dotenv(os.getenv("ENV_FILE") or ".env")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 

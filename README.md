@@ -81,6 +81,19 @@ The Google button always shows the account chooser (`prompt=select_account`).
 
 ## Run it (production)
 
+### Production environment file
+
+A ready-to-use `.env.production` was generated for you (git-ignored — never commit
+it). It contains a **real, random `SECRET_KEY`** plus your `ENV=production` settings.
+Tell the app to load it with the `ENV_FILE` variable:
+
+```bash
+ENV_FILE=.env.production python app.py        # Windows: $env:ENV_FILE='.env.production'
+```
+
+The only value you must change before deploying is `SITE_URL` — replace
+`https://your-domain.com` with your real domain.
+
 ### Option A — Windows host (Waitress)
 
 ```bash
@@ -132,6 +145,17 @@ points at the app, wherever it runs.
 
 Login, Google OAuth, page-range merging and the download all work through the tunnel.
 
+## Supabase CLI
+
+The [Supabase CLI](https://supabase.com/docs/guides/cli) is installed — check it with
+`supabase --version`. Use it to link the project to your cloud project (good for
+local dev DBs and migrations later):
+
+```bash
+supabase login                       # one-time browser auth
+supabase link --project-ref YOUR-PROJECT-REF
+```
+
 ## API
 
 | Endpoint | Method | Auth | Description |
@@ -158,9 +182,12 @@ pdf-merger/
 ├── serve.py            # Waitress production server (Windows)
 ├── wsgi.py             # gunicorn entry point (Linux / Docker)
 ├── Dockerfile          # production image (gunicorn)
+├── LICENSE             # MIT
 ├── requirements.txt
 ├── .env.example        # dev template
 ├── .env.production.example
+├── .env.production     # your real production env (git-ignored, generated)
 ├── deploy/             # cloudflared tunnel config example
-└── templates/          # base.html, index.html, login.html, signup.html, error.html
+└── templates/          # base.html, index.html, about.html, login.html,
+                        # signup.html, thankyou.html, error.html
 ```
