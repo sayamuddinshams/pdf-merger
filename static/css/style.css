@@ -3,7 +3,8 @@
    ============================================================ */
 
 :root {
-  --bg: #070a13;
+  color-scheme: dark;
+  --bg: #060a15;
   --surface: rgba(255, 255, 255, 0.045);
   --surface-strong: rgba(255, 255, 255, 0.08);
   --border: rgba(255, 255, 255, 0.09);
@@ -21,6 +22,108 @@
 
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: "Sora", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Flash messages */
+  --flash-success-bg: rgba(52, 211, 153, 0.08);
+  --flash-success-text: #a7f3d0;
+  --flash-error-bg: rgba(248, 113, 113, 0.08);
+  --flash-error-text: #fca5a5;
+
+  /* Theme-dependent surfaces & effects */
+  --grid-line: rgba(255, 255, 255, 0.03);
+  --panel-bg: rgba(6, 10, 21, 0.72);
+  --hover-bg: rgba(255, 255, 255, 0.05);
+  --hover-border: rgba(255, 255, 255, 0.22);
+  --brand-logo-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.28), rgba(168, 85, 247, 0.28));
+  --icon-border: rgba(255, 255, 255, 0.18);
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --input-border: rgba(255, 255, 255, 0.12);
+  --field-focus-bg: rgba(255, 255, 255, 0.06);
+  --focus-ring: rgba(99, 102, 241, 0.18);
+  --card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  --dropzone-hover-bg: rgba(99, 102, 241, 0.06);
+  --chip-bg: rgba(255, 255, 255, 0.05);
+  --code-bg: rgba(255, 255, 255, 0.07);
+  --preview-bg: #131320;
+  --preview-line: rgba(255, 255, 255, 0.03);
+  --toast-bg: rgba(20, 26, 44, 0.92);
+  --btn-google-bg: #fff;
+  --btn-google-text: #1c2434;
+  --btn-google-border: #fff;
+  --btn-google-hover: #eef0f6;
+  --menu-bg: rgba(11, 15, 28, 0.96);
+  --shadow-btn: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --shadow-float: 0 18px 44px rgba(0, 0, 0, 0.55);
+  --shadow-card: 0 24px 60px -28px rgba(0, 0, 0, 0.65);
+  --glow-gradient: radial-gradient(
+    circle at center,
+    rgba(96, 205, 255, 0.22) 0%,
+    rgba(56, 189, 248, 0.12) 38%,
+    rgba(14, 165, 233, 0.05) 62%,
+    transparent 78%
+  );
+  --glow-blend: screen;
+  --ambient: radial-gradient(120% 70% at 50% -10%, rgba(255, 255, 255, 0.05), transparent 60%);
+  --glow-max: 1;
+}
+
+/* Light theme */
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: linear-gradient(160deg, #f8f9fe 0%, #f1f3fc 45%, #e9ecf8 100%);
+  --surface: rgba(23, 30, 55, 0.05);
+  --surface-strong: rgba(23, 30, 55, 0.09);
+  --border: rgba(23, 30, 55, 0.1);
+  --border-strong: rgba(23, 30, 55, 0.2);
+
+  --text: #131a30;
+  --text-muted: #5d667d;
+
+  --success: #059669;
+  --danger: #dc2626;
+
+  --flash-success-bg: rgba(16, 185, 129, 0.12);
+  --flash-success-text: #065f46;
+  --flash-error-bg: rgba(239, 68, 68, 0.1);
+  --flash-error-text: #991b1b;
+
+  --grid-line: rgba(49, 66, 114, 0.07);
+  --panel-bg: rgba(255, 255, 255, 0.78);
+  --hover-bg: rgba(23, 30, 55, 0.06);
+  --hover-border: rgba(23, 30, 55, 0.25);
+  --brand-logo-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(168, 85, 247, 0.16));
+  --icon-border: rgba(23, 30, 55, 0.2);
+  --input-bg: rgba(255, 255, 255, 0.8);
+  --input-border: rgba(23, 30, 55, 0.16);
+  --field-focus-bg: rgba(255, 255, 255, 0.95);
+  --focus-ring: rgba(99, 102, 241, 0.16);
+  --card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.65));
+  --dropzone-hover-bg: rgba(99, 102, 241, 0.07);
+  --chip-bg: rgba(23, 30, 55, 0.05);
+  --code-bg: rgba(23, 30, 55, 0.06);
+  --preview-bg: #e7ebf4;
+  --preview-line: rgba(23, 30, 55, 0.06);
+  --toast-bg: rgba(255, 255, 255, 0.96);
+  --btn-google-bg: #ffffff;
+  --btn-google-text: #1f2937;
+  --btn-google-border: rgba(23, 30, 55, 0.18);
+  --btn-google-hover: #f1f4f9;
+  --menu-bg: rgba(255, 255, 255, 0.97);
+  --shadow-btn: 0 4px 14px rgba(31, 38, 66, 0.12);
+  --shadow-float: 0 18px 44px rgba(31, 38, 66, 0.16);
+  --shadow-card: 0 24px 60px -28px rgba(31, 38, 66, 0.25);
+  --glow-gradient: radial-gradient(
+    circle at center,
+    rgba(96, 165, 250, 0.34) 0%,
+    rgba(129, 140, 248, 0.16) 40%,
+    rgba(56, 189, 248, 0.07) 65%,
+    transparent 82%
+  );
+  --glow-blend: normal;
+  --ambient:
+    radial-gradient(120% 75% at 50% -10%, rgba(129, 140, 248, 0.14), transparent 62%),
+    radial-gradient(90% 60% at 100% 110%, rgba(56, 189, 248, 0.1), transparent 60%);
+  --glow-max: 0.6;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,44 +140,64 @@ body {
   overflow-x: hidden;
 }
 
-/* ---------------- Background decoration ---------------- */
+/* ---------------- Background scene ---------------- */
+/* Minimalist "graph paper" backdrop (Google-Antigravity inspired):
+   a very fine, faint grid on deep navy, with a single soft cyan glow
+   that eases toward the cursor. The glow blends with the grid
+   (mix-blend-mode: screen) so the graph lines subtly light up around
+   the pointer. Everything sits behind the UI (z-index -1) and never
+   intercepts events. */
 
-.bg-glow {
+.bg-scene {
   position: fixed;
+  inset: 0;
   z-index: -1;
-  border-radius: 50%;
-  filter: blur(110px);
+  overflow: hidden;
   pointer-events: none;
+  isolation: isolate; /* keep the glow/grid blend contained in the backdrop */
 }
 
-.bg-glow--1 {
-  width: 520px;
-  height: 520px;
-  top: -180px;
-  left: -140px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.32), transparent 65%);
-}
-
-.bg-glow--2 {
-  width: 620px;
-  height: 620px;
-  bottom: -240px;
-  right: -180px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.26), transparent 65%);
+/* Ambient light wash — gives the scene depth in both themes. */
+.bg-scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ambient);
+  pointer-events: none;
 }
 
 .bg-grid {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
+  position: absolute;
+  inset: -80px; /* slight bleed so edges never show as seams */
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 44px 44px;
-  -webkit-mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, #000, transparent 72%);
-  mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, #000, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 0%, #000, transparent 78%);
+  mask-image: radial-gradient(ellipse 85% 70% at 50% 0%, #000, transparent 78%);
   pointer-events: none;
 }
+
+.bg-spotlight {
+  --spot: clamp(360px, 44vmin, 600px);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--spot);
+  height: var(--spot);
+  margin-left: calc(var(--spot) / -2);
+  margin-top: calc(var(--spot) / -2);
+  border-radius: 50%;
+  background: var(--glow-gradient);
+  filter: blur(22px);
+  mix-blend-mode: var(--glow-blend);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+  transition: opacity 0.6s ease;
+}
+
+.bg-spotlight.is-visible { opacity: var(--glow-max); }
 
 /* ---------------- Layout ---------------- */
 
@@ -90,7 +213,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(7, 10, 19, 0.72);
+  background: var(--panel-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
@@ -122,7 +245,7 @@ body {
   padding: 8px;
   border-radius: 11px;
   color: var(--text);
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.28), rgba(168, 85, 247, 0.28));
+  background: var(--brand-logo-bg);
   border: 1px solid var(--border-strong);
 }
 
@@ -176,7 +299,7 @@ body {
 
 .nav-link:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--hover-bg);
 }
 
 .nav-link.is-active {
@@ -193,6 +316,54 @@ body {
   border-radius: 2px;
   background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
 }
+
+/* ---------------- Theme toggle ---------------- */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 11px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  background: var(--hover-bg);
+  border-color: var(--hover-border);
+}
+
+.theme-toggle:active { transform: scale(0.92); }
+
+.theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Show the icon for the theme you'd switch TO: sun in dark, moon in light. */
+.theme-toggle__icon--sun { display: block; }
+.theme-toggle__icon--moon { display: none; }
+
+html[data-theme="light"] .theme-toggle__icon--sun { display: none; }
+html[data-theme="light"] .theme-toggle__icon--moon { display: block; }
 
 /* ---------------- User menu ---------------- */
 
@@ -215,8 +386,8 @@ body {
 }
 
 .user-menu__btn:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  border-color: var(--hover-border);
+  box-shadow: var(--shadow-btn);
 }
 
 .user-menu__avatar {
@@ -263,10 +434,10 @@ body {
   right: 0;
   top: calc(100% + 10px);
   min-width: 230px;
-  background: var(--surface);
+  background: var(--menu-bg);
   border: 1px solid var(--border-strong);
   border-radius: 14px;
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
+  box-shadow: var(--shadow-float);
   padding: 6px;
   z-index: 50;
   animation: fadeUp 0.18s ease both;
@@ -313,11 +484,11 @@ body {
 }
 
 .user-menu__item:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--hover-bg);
 }
 
 .user-menu__item--danger {
-  color: #f87171;
+  color: var(--danger);
 }
 
 .user-menu__item--danger:hover {
@@ -375,14 +546,14 @@ body {
 .btn-block { width: 100%; }
 
 .btn-google {
-  color: #1c2434;
-  background: #fff;
-  border-color: #fff;
+  color: var(--btn-google-text);
+  background: var(--btn-google-bg);
+  border-color: var(--btn-google-border);
   font-weight: 500;
 }
 
 .btn-google:hover {
-  background: #eef0f6;
+  background: var(--btn-google-hover);
   transform: translateY(-1px);
 }
 
@@ -406,14 +577,14 @@ body {
 
 .flash--success {
   border-color: rgba(52, 211, 153, 0.4);
-  background: rgba(52, 211, 153, 0.08);
-  color: #a7f3d0;
+  background: var(--flash-success-bg);
+  color: var(--flash-success-text);
 }
 
 .flash--error {
   border-color: rgba(248, 113, 113, 0.4);
-  background: rgba(248, 113, 113, 0.08);
-  color: #fca5a5;
+  background: var(--flash-error-bg);
+  color: var(--flash-error-text);
 }
 
 /* ---------------- Hero ---------------- */
@@ -466,13 +637,13 @@ body {
 /* ---------------- Card ---------------- */
 
 .card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 26px;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.65);
+  box-shadow: var(--shadow-card);
 }
 
 /* ---------------- Drop zone ---------------- */
@@ -496,7 +667,7 @@ body {
 
 .dropzone:hover {
   border-color: var(--accent-1);
-  background: rgba(99, 102, 241, 0.06);
+  background: var(--dropzone-hover-bg);
 }
 
 .dropzone:focus-visible {
@@ -523,7 +694,7 @@ body {
   color: #fff;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid var(--icon-border);
   box-shadow: 0 12px 30px -8px rgba(99, 102, 241, 0.6);
 }
 
@@ -649,9 +820,9 @@ body {
   width: 72px;
   padding: 5px 9px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-primary);
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text);
   font-family: var(--font-body);
   font-size: 0.82rem;
   text-align: center;
@@ -665,8 +836,8 @@ body {
 
 .range-input:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 .file-actions {
@@ -821,7 +992,7 @@ body {
   padding: 13px 15px;
   border-radius: 12px;
   border: 1px solid var(--border-strong);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--input-bg);
   color: var(--text);
   font: inherit;
   font-size: 0.95rem;
@@ -833,8 +1004,8 @@ body {
 
 .field__input:focus {
   border-color: var(--accent-1);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
-  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+  background: var(--field-focus-bg);
 }
 
 .divider {
@@ -910,9 +1081,9 @@ body {
   font-size: 0.92rem;
   font-weight: 500;
   color: var(--text);
-  background: rgba(20, 26, 44, 0.92);
+  background: var(--toast-bg);
   border: 1px solid var(--border-strong);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
+  box-shadow: var(--shadow-float);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   opacity: 0;
@@ -950,8 +1121,8 @@ body {
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border-strong);
-  background: #131320;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  background: var(--preview-bg);
+  box-shadow: inset 0 0 0 1px var(--preview-line);
   margin-bottom: 22px;
 }
 
@@ -961,7 +1132,7 @@ body {
   height: 64vh;
   min-height: 380px;
   border: 0;
-  background: #131320;
+  background: var(--preview-bg);
 }
 
 .thankyou__actions {
@@ -1100,7 +1271,7 @@ body {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--chip-bg);
   border: 1px solid var(--border);
 }
 
@@ -1123,7 +1294,7 @@ body {
   font-size: 0.85em;
   padding: 2px 6px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.07);
+  background: var(--code-bg);
   border: 1px solid var(--border);
   color: var(--accent-2);
 }
@@ -1146,6 +1317,12 @@ body {
 }
 
 /* ---------------- Responsive ---------------- */
+
+/* Touch devices have no cursor to track — drop the glow so the backdrop
+   stays a calm, static graph paper (no dead battery drain). */
+@media (pointer: coarse) {
+  .bg-spotlight { display: none; }
+}
 
 @media (max-width: 640px) {
   .page { padding: 24px 14px 32px; }
@@ -1188,4 +1365,7 @@ body {
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
+
+  /* Keep the backdrop static and quiet for vestibular-sensitive users. */
+  .bg-spotlight { display: none; }
 }

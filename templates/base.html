@@ -9,15 +9,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#060a15" />
+  <script>
+    // Apply the saved theme before the first paint so there's no flash.
+    (function () {
+      var theme = "dark";
+      try {
+        if (localStorage.getItem("mergepdf-theme") === "light") theme = "light";
+      } catch (e) { /* storage unavailable — keep default */ }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <body>
 
-  <!-- Decorative background layers -->
-  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
-  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
-  <div class="bg-grid" aria-hidden="true"></div>
+  <!-- Graph-paper background: fine grid + cursor-reactive cyan glow -->
+  <div class="bg-scene" id="bgScene" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-spotlight" id="bgSpotlight"></div>
+  </div>
 
   <!-- Navbar -->
   <nav class="navbar">
@@ -44,6 +56,24 @@
       </ul>
 
       <div class="navbar__right">
+        <button class="theme-toggle" id="themeToggle" type="button"
+                aria-label="Switch between dark and light theme"
+                aria-pressed="false" title="Switch theme">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
         {% if current_user %}
           <div class="user-menu" id="userMenu">
             <button class="user-menu__btn" id="userMenuBtn" type="button"
@@ -128,6 +158,8 @@
       });
     })();
   </script>
+  <script src="{{ url_for('static', filename='js/bg.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>
