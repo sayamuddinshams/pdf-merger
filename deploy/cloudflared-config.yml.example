@@ -1,0 +1,32 @@
+# Cloudflare Tunnel config — what cloudflared sends to your local/remote Flask app.
+#
+# Docs: https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/
+#
+# Save this as:  cloudflared/config.yml
+# Then run:      cloudflared tunnel --config cloudflared/config.yml run mergepdf
+#
+# Replace:
+#   - YOUR-TUNNEL-UUID with the UUID from:  cloudflared tunnel create mergepdf
+#   - AUTH-EMAIL with your Cloudflare login email
+#   - YOUR-API-TOKEN with a Cloudflare API token (Dashboard -> My Profile -> API Tokens)
+#     with Zone.DNS edit permission for the zone you added the tunnel to.
+#   - 127.0.0.1:5001 with your Flask app address (port 5001 via `python app.py`
+#     or `python serve.py`, or the container's published port).
+
+tunnel: YOUR-TUNNEL-UUID
+credentials-file: C:/Users/you/.cloudflared/YOUR-TUNNEL-UUID.json
+
+ingress:
+  - hostname: your-domain.com
+    service: http://127.0.0.1:5001
+  - hostname: www.your-domain.com
+    service: http://127.0.0.1:5001
+  - service: http_status:404   # catch-all
+
+# DNS: after the tunnel exists, add the CNAME records in Cloudflare dashboard:
+#   your-domain.com  -> YOUR-TUNNEL-UUID.cfargotunnel.com   (proxied)
+#   www.your-domain.com -> YOUR-TUNNEL-UUID.cfargotunnel.com (proxied)
+
+# Supabase redirects:
+# Add https://your-domain.com/** to Supabase: Authentication -> URL Configuration
+# -> Redirect URLs, and keep http://127.0.0.1:5001/** for local testing.

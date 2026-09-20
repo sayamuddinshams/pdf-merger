@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}MergePDF — A beautiful PDF merger{% endblock %}
+
+{% block content %}
+<main class="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    {% if current_user %}
+      <p class="hero__eyebrow">Welcome back, {{ current_user.name }} 👋</p>
+    {% else %}
+      <p class="hero__eyebrow">Fast · Free · Private</p>
+    {% endif %}
+    <h1 class="hero__title">Combine PDFs in seconds<span class="hero__dot">.</span></h1>
+    <p class="hero__subtitle">
+      Drag and drop your PDF files, put them in any order, and merge them into a single document.
+    </p>
+  </section>
+
+  <!-- Main card -->
+  <section class="card">
+
+    <!-- Drop zone -->
+    <div class="dropzone" id="dropzone" role="button" tabindex="0"
+         aria-label="Add PDF files" aria-describedby="dropzoneHint">
+      <input type="file" id="fileInput" accept="application/pdf,.pdf" multiple hidden />
+
+      <span class="dropzone__icon-wrap" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 16V4" />
+          <path d="m7 9 5-5 5 5" />
+          <path d="M4 20h16" />
+        </svg>
+      </span>
+
+      <p class="dropzone__title">Drag &amp; drop your PDFs here</p>
+      <p class="dropzone__subtitle">or click to browse your files</p>
+      <p class="dropzone__hint" id="dropzoneHint">PDF only · up to 10 files at once</p>
+    </div>
+
+    <!-- File list -->
+    <div class="file-list" id="fileList" hidden>
+      <div class="file-list__head">
+        <span class="file-list__title">Your files</span>
+        <button class="link-btn" id="clearBtn" type="button">Clear all</button>
+      </div>
+    </div>
+
+    <!-- Footer actions -->
+    <footer class="card__footer">
+      <p class="file-summary" id="fileSummary">No files selected</p>
+      <button class="merge-btn" id="mergeBtn" type="button" disabled>Merge PDFs</button>
+    </footer>
+
+  </section>
+
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% if just_signed_in and current_user %}
+<script>
+  (function () {
+    var toast = document.getElementById("toast");
+    if (!toast || !window.USER_NAME) return;
+    toast.textContent = "Welcome back, " + window.USER_NAME + "! Ready to merge?";
+    toast.className = "toast show success";
+    setTimeout(function () { toast.classList.remove("show"); }, 5200);
+  })();
+</script>
+{% endif %}
+{% endblock %}

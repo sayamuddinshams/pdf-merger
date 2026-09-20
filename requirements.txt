@@ -1,0 +1,7 @@
+flask>=3.0
+flask-wtf>=1.2
+flask-limiter>=3.5
+python-dotenv>=1.0
+supabase>=2.0
+pypdf>=4.0
+waitress>=3.0

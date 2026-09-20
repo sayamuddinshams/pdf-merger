@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}MergePDF{% endblock %}</title>
+  <meta name="description" content="Combine PDF files into one document with a beautiful, responsive interface." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+</head>
+<body>
+
+  <!-- Decorative background layers -->
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar__inner">
+      <a class="brand" href="{{ url_for('index') }}">
+        <svg class="brand__logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z" />
+          <path d="M14 3v5h5" />
+          <path d="M9 13h6M12 10v6" />
+        </svg>
+        <span class="brand__name">Merge<span class="brand__accent">PDF</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li>
+          <a class="nav-link{% if request.endpoint == 'index' %} is-active{% endif %}"
+             href="{{ url_for('index') }}">Home</a>
+        </li>
+        <li>
+          <a class="nav-link{% if request.endpoint == 'about' %} is-active{% endif %}"
+             href="{{ url_for('about') }}">About</a>
+        </li>
+      </ul>
+
+      <div class="navbar__right">
+        {% if current_user %}
+          <div class="user-menu" id="userMenu">
+            <button class="user-menu__btn" id="userMenuBtn" type="button"
+                    aria-haspopup="true" aria-expanded="false" aria-label="Account menu">
+              {% if current_user.avatar %}
+                <img class="user-menu__avatar" src="{{ current_user.avatar }}" alt="" referrerpolicy="no-referrer" />
+              {% else %}
+                <span class="user-menu__initials">{{ current_user.initials }}</span>
+              {% endif %}
+              <span class="user-menu__name">{{ current_user.name }}</span>
+              <svg class="user-menu__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="user-menu__dropdown" id="userMenuDropdown" hidden>
+              <div class="user-menu__header">
+                <span class="user-menu__header-name">{{ current_user.name }}</span>
+                <span class="user-menu__header-email">{{ current_user.email }}</span>
+              </div>
+              <a class="user-menu__item" href="{{ url_for('about') }}">About MergePDF</a>
+              <form method="post" action="{{ url_for('auth.logout') }}" class="navbar__logout">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <button class="user-menu__item user-menu__item--danger" type="submit">Log out</button>
+              </form>
+            </div>
+          </div>
+        {% else %}
+          <a class="btn btn-ghost" href="{{ url_for('auth.login') }}">Log in</a>
+          <a class="btn btn-primary" href="{{ url_for('auth.signup') }}">Sign up</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <div class="page">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flashes" aria-live="polite">
+          {% for category, message in messages %}
+            <div class="flash flash--{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+      <p>MergePDF · Built with Flask + Supabase · Merging engine live</p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    window.USER_AUTHENTICATED = {{ "true" if current_user else "false" }};
+    window.USER_NAME = {{ (current_user.name|tojson) if current_user else "''" }};
+  </script>
+  <script>
+    (function () {
+      var btn = document.getElementById("userMenuBtn");
+      var menu = document.getElementById("userMenuDropdown");
+      if (!btn || !menu) return;
+
+      function close() {
+        menu.hidden = true;
+        btn.setAttribute("aria-expanded", "false");
+      }
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        menu.hidden = !menu.hidden;
+        btn.setAttribute("aria-expanded", String(!menu.hidden));
+      });
+      document.addEventListener("click", function (e) {
+        if (!document.getElementById("userMenu").contains(e.target)) close();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") close();
+      });
+    })();
+  </script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

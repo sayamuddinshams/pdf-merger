@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}{{ code }} · MergePDF{% endblock %}
+
+{% block content %}
+<main class="auth-page">
+  <section class="card auth-card auth-card--error">
+    <p class="auth-card__code">{{ code }}</p>
+    <h1 class="auth-card__title">{{ message }}</h1>
+    <p class="auth-card__subtitle">Something went wrong — let's get you back on track.</p>
+    <p style="margin-top: 28px;">
+      <a class="btn btn-primary btn-block" href="{{ url_for('index') }}">Back to home</a>
+    </p>
+  </section>
+</main>
+{% endblock %}

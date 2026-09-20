@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}About · MergePDF{% endblock %}
+
+{% block content %}
+<main class="main about">
+
+  <section class="hero about__hero">
+    <p class="hero__eyebrow">About MergePDF</p>
+    <h1 class="hero__title">Merging PDFs should be <span class="hero__gradient">simple</span>.</h1>
+    <p class="hero__subtitle">
+      MergePDF is a free, fast and private way to combine PDF files into one document —
+      with control over exactly which pages make it into the final file.
+    </p>
+  </section>
+
+  <!-- Why MergePDF -->
+  <section class="about__section">
+    <h2 class="about__heading">Why MergePDF?</h2>
+    <div class="about__grid">
+      <article class="feature-card">
+        <span class="feature-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+            <path d="M13 2 3 14h7l-1 8 10-12h-7z" />
+          </svg>
+        </span>
+        <h3 class="feature-card__title">Fast &amp; free</h3>
+        <p class="feature-card__text">No subscriptions, no watermarks, no waiting. Your files merge in seconds — right from your browser.</p>
+      </article>
+
+      <article class="feature-card">
+        <span class="feature-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+        </span>
+        <h3 class="feature-card__title">Private by design</h3>
+        <p class="feature-card__text">Your PDFs are processed and then deleted automatically. Merged files expire shortly after you download them.</p>
+      </article>
+
+      <article class="feature-card">
+        <span class="feature-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+            <path d="M4 4h16v16H4z" />
+            <path d="M8 9h8M8 13h5" />
+          </svg>
+        </span>
+        <h3 class="feature-card__title">Page-level control</h3>
+        <p class="feature-card__text">Choose which pages to include from every file — <code>2-5</code>, <code>1,3,8</code>, or everything at once.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="about__section">
+    <h2 class="about__heading">How it works</h2>
+    <ol class="steps">
+      <li class="step">
+        <span class="step__num">1</span>
+        <div class="step__body">
+          <h3 class="step__title">Upload your PDFs</h3>
+          <p class="step__text">Drag &amp; drop up to 10 files, or click to browse. Arrange them in the order you want.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step__num">2</span>
+        <div class="step__body">
+          <h3 class="step__title">Choose your pages</h3>
+          <p class="step__text">Optional: enter a page range per file, like <code>2-5</code> or <code>1,3</code>, to keep only what you need.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step__num">3</span>
+        <div class="step__body">
+          <h3 class="step__title">Merge &amp; download</h3>
+          <p class="step__text">Hit Merge, review the result on the thank-you page, then click the download button to save <code>merged.pdf</code>.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Built with -->
+  <section class="about__section">
+    <h2 class="about__heading">Built with</h2>
+    <div class="tech-chips">
+      <span class="tech-chip">Flask</span>
+      <span class="tech-chip">Supabase Auth</span>
+      <span class="tech-chip">pypdf</span>
+      <span class="tech-chip">Google Sign-In</span>
+      <span class="tech-chip">Cloudflare-ready</span>
+    </div>
+  </section>
+
+  <p class="about__foot">
+    Questions or feedback? <a class="about__link" href="mailto:hello@mergepdf.app">hello@mergepdf.app</a>
+  </p>
+
+</main>
+{% endblock %}
