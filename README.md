@@ -1,12 +1,12 @@
-# MergePDF
+# PDF Weave
 
 A beautiful, responsive **PDF merger** built with Flask — dark-mode UI, drag & drop,
 per-file **page ranges**, and full authentication powered by **Supabase**
 (Backend-as-a-Service): email/password sign-up **and** "Continue with Google".
 
 Production-ready: Waitress / gunicorn server, CSRF + security headers, rate-limited
-auth, health checks, structured error pages, and a drop-in **Cloudflare Tunnel**
-deployment.
+auth, health checks, structured error pages, a one-click **Render Blueprint**
+(`render.yaml`), and a drop-in **Cloudflare Tunnel** deployment.
 
 ## Run it (development)
 
@@ -65,7 +65,7 @@ The Google button always shows the account chooser (`prompt=select_account`).
 - Merge engine powered by **pypdf**; after merging you land on a **Thank-you page**
   with the merged PDF previewed inline and a **Download button** (files are kept
   briefly, then deleted automatically)
-- **About page** (`/about`) — what MergePDF is, how it works, and the tech behind it
+- **About page** (`/about`) — what PDF Weave is, how it works, and the tech behind it
 - Auth via **Supabase**: email/password + Google OAuth
 - Session tokens live in the Flask session cookie (auto-refreshed near expiry)
 - **Production hardening**:
@@ -92,7 +92,27 @@ ENV_FILE=.env.production python app.py        # Windows: $env:ENV_FILE='.env.pro
 ```
 
 The only value you must change before deploying is `SITE_URL` — replace
-`https://your-domain.com` with your real domain.
+`https://your-domain.com` with your real URL (e.g. `https://pdfweave.onrender.com`
+on Render).
+
+### Deploy on Render (free)
+
+The repo ships with `render.yaml`, a Render **Blueprint** that pre-configures the
+free web service (Python 3, `pip install -r requirements.txt`, gunicorn). Steps:
+
+1. Sign up at https://render.com with **Sign in with GitHub**.
+2. **New → Blueprint** → connect the `sayamuddinshams/pdf-merger` repo.
+3. In the service's **Environment** tab, set the four manual vars:
+   `SITE_URL=https://pdfweave.onrender.com`, a fresh `SECRET_KEY`
+   (`python -c "import secrets; print(secrets.token_hex(32))"`), and your
+   `SUPABASE_URL` / `SUPABASE_ANON_KEY` from the local `.env`.
+4. **Manual Deploy → Deploy latest commit**, then add
+   `https://pdfweave.onrender.com/**` to
+   **Supabase → Authentication → URL Configuration → Redirect URLs**.
+
+Free tier notes: the instance spins down after 15 min idle (first visit after a
+sleep takes ~1 min; an UptimeRobot ping every 5 min keeps it warm), and the disk is
+ephemeral — merged files are deleted after their 30-minute TTL anyway.
 
 ### Option A — Windows host (Waitress)
 
@@ -103,12 +123,12 @@ python serve.py          # Waitress on 0.0.0.0:5001 (respects $env:PORT)
 ### Option B — Linux / Docker (gunicorn)
 
 ```bash
-docker build -t mergepdf .
+docker build -t pdfweave .
 docker run -d -p 8000:8000 \
   --env-file .env \
   -e ENV=production \
-  -e SITE_URL=https://your-domain.com \
-  mergepdf
+  -e SITE_URL=https://pdfweave.onrender.com \
+  pdfweave
 ```
 
 ### Both options
@@ -127,7 +147,7 @@ points at the app, wherever it runs.
 3. Create a tunnel:
    ```bash
    cloudflared tunnel login
-   cloudflared tunnel create mergepdf      # -> gives you a tunnel UUID
+   cloudflared tunnel create pdfweave      # -> gives you a tunnel UUID
    ```
 4. Copy `deploy/cloudflared-config.yml.example` to `cloudflared/config.yml`,
    fill in the tunnel UUID, your Cloudflare API token, and the app address.
@@ -136,7 +156,7 @@ points at the app, wherever it runs.
 7. Run the app and the tunnel:
    ```bash
    python serve.py                          # app on 0.0.0.0:5001
-   cloudflared tunnel --config cloudflared/config.yml run mergepdf
+   cloudflared tunnel --config cloudflared/config.yml run pdfweave
    ```
 8. In Supabase (**Authentication → URL Configuration → Redirect URLs**)
    add `https://your-domain.com/**` so Google sign-in works on the real domain.

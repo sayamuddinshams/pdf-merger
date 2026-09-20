@@ -1,0 +1,25 @@
+# Render Blueprint — deploy PDF Weave (Flask) on the free plan.
+# Usage: Render -> New -> Blueprint -> choose this GitHub repo.
+# After deploy, set the 4 "manual" env vars (marked sync: false) in the
+# service's Environment tab, then redeploy or just restart the service.
+services:
+  - type: web
+    name: pdfweave
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 1 -b 0.0.0.0:$PORT wsgi:application
+    healthCheckPath: /api/health
+    envVars:
+      - key: ENV
+        value: production
+      - key: PORT
+        value: "10000"
+      - key: SITE_URL
+        sync: false # set to https://pdfweave.onrender.com
+      - key: SECRET_KEY
+        sync: false # generate: python -c "import secrets; print(secrets.token_hex(32))"
+      - key: SUPABASE_URL
+        sync: false # from your local .env
+      - key: SUPABASE_ANON_KEY
+        sync: false # from your local .env (keep private)

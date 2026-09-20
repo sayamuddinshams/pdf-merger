@@ -13,5 +13,5 @@ from app import app
 PORT = int(os.getenv("PORT", "5001"))
 
 if __name__ == "__main__":
-    print(f"MergePDF serving on 0.0.0.0:{PORT} via Waitress")
+    print(f"PDF Weave serving on 0.0.0.0:{PORT} via Waitress")
     serve(app, host="0.0.0.0", port=PORT, threads=8)

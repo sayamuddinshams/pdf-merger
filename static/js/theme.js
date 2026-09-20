@@ -1,5 +1,5 @@
 /* ============================================================
-   MergePDF — theme toggle
+   PDF Weave — theme toggle
    ------------------------------------------------------------
    Switches between the dark and light themes, persists the
    choice in localStorage, and syncs the browser chrome color
@@ -10,7 +10,7 @@
 (function () {
   "use strict";
 
-  var KEY = "mergepdf-theme";
+  var KEY = "pdfweave-theme";
   var root = document.documentElement;
   var toggle = document.getElementById("themeToggle");
   if (!toggle) return;

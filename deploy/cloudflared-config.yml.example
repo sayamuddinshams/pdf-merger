@@ -3,10 +3,10 @@
 # Docs: https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/
 #
 # Save this as:  cloudflared/config.yml
-# Then run:      cloudflared tunnel --config cloudflared/config.yml run mergepdf
+# Then run:      cloudflared tunnel --config cloudflared/config.yml run pdfweave
 #
 # Replace:
-#   - YOUR-TUNNEL-UUID with the UUID from:  cloudflared tunnel create mergepdf
+#   - YOUR-TUNNEL-UUID with the UUID from:  cloudflared tunnel create pdfweave
 #   - AUTH-EMAIL with your Cloudflare login email
 #   - YOUR-API-TOKEN with a Cloudflare API token (Dashboard -> My Profile -> API Tokens)
 #     with Zone.DNS edit permission for the zone you added the tunnel to.

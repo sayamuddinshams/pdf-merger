@@ -1,5 +1,5 @@
 """
-MergePDF — Flask backend (production build).
+PDF Weave — Flask backend (production build).
 
 Identity is handled by Supabase (Backend-as-a-Service): email/password sign-up
 and login, plus "Continue with Google". See .env.example and README.
@@ -113,7 +113,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(name)s: %(message)s",
 )
-log = logging.getLogger("mergepdf")
+log = logging.getLogger("pdfweave")
 log.setLevel(logging.INFO if ENV == "production" else logging.DEBUG)
 
 log_file = os.getenv("LOG_FILE", "").strip()
@@ -240,7 +240,7 @@ def index():
 
 @app.route("/about")
 def about():
-    """About MergePDF."""
+    """About PDF Weave."""
     return render_template("about.html")
 
 
@@ -251,7 +251,7 @@ def about():
 @app.route("/api/health")
 def api_health():
     """Health check for load balancers and Cloudflare."""
-    return jsonify({"ok": True, "service": "mergepdf"})
+    return jsonify({"ok": True, "service": "pdfweave"})
 
 
 @app.route("/api/me")

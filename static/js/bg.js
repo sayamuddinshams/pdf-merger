@@ -1,5 +1,5 @@
 /* ============================================================
-   MergePDF — minimal interactive background
+   PDF Weave — minimal interactive background
    ------------------------------------------------------------
    Graph-paper style: a static, faint cyan-tinted grid is lit by
    a single soft glow that eases toward the cursor. Only one

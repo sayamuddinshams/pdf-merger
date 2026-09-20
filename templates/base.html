@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% block title %}MergePDF{% endblock %}</title>
-  <meta name="description" content="Combine PDF files into one document with a beautiful, responsive interface." />
+  <title>{% block title %}PDF Weave{% endblock %}</title>
+  <meta name="description" content="Merge PDFs online for free — drag, drop, and weave multiple PDF files into one document. Fast, private, and beautifully simple." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +15,7 @@
     (function () {
       var theme = "dark";
       try {
-        if (localStorage.getItem("mergepdf-theme") === "light") theme = "light";
+        if (localStorage.getItem("pdfweave-theme") === "light") theme = "light";
       } catch (e) { /* storage unavailable — keep default */ }
       document.documentElement.setAttribute("data-theme", theme);
     })();
@@ -41,7 +41,7 @@
           <path d="M14 3v5h5" />
           <path d="M9 13h6M12 10v6" />
         </svg>
-        <span class="brand__name">Merge<span class="brand__accent">PDF</span></span>
+        <span class="brand__name">PDF<span class="brand__accent">Weave</span></span>
       </a>
 
       <ul class="nav-links">
@@ -94,7 +94,7 @@
                 <span class="user-menu__header-name">{{ current_user.name }}</span>
                 <span class="user-menu__header-email">{{ current_user.email }}</span>
               </div>
-              <a class="user-menu__item" href="{{ url_for('about') }}">About MergePDF</a>
+              <a class="user-menu__item" href="{{ url_for('about') }}">About PDF Weave</a>
               <form method="post" action="{{ url_for('auth.logout') }}" class="navbar__logout">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                 <button class="user-menu__item user-menu__item--danger" type="submit">Log out</button>
@@ -124,7 +124,7 @@
     {% block content %}{% endblock %}
 
     <footer class="footer">
-      <p>MergePDF · Built with Flask + Supabase · Merging engine live</p>
+      <p>PDF Weave · Built with Flask + Supabase · Merging engine live</p>
     </footer>
 
   </div>

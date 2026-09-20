@@ -1,5 +1,5 @@
 /* ============================================================
-   MergePDF — frontend logic
+   PDF Weave — frontend logic
    Drag & drop, file list management (with per-file page ranges),
    and the authenticated merge request.
    ============================================================ */
