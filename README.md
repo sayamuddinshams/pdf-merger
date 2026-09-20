@@ -114,6 +114,31 @@ Free tier notes: the instance spins down after 15 min idle (first visit after a
 sleep takes ~1 min; an UptimeRobot ping every 5 min keeps it warm), and the disk is
 ephemeral — merged files are deleted after their 30-minute TTL anyway.
 
+### Deploy on PythonAnywhere (free, no credit card)
+
+The truly cardless option: always-on, no 15-min sleeps. Free plan caveats — your URL
+is `<username>.pythonanywhere.com`, there's a small banner, and you get 100 CPU
+seconds/day (fine for personal use; a typical merge is ~1–2 s of CPU).
+
+1. Create a free account at https://www.pythonanywhere.com (no payment method).
+2. **Consoles → Bash**, then clone the private repo (see the SSH deploy key note):
+   ```bash
+   git clone git@github.com:sayamuddinshams/pdf-merger.git
+   cd pdf-merger && bash deploy/pythonanywhere_setup.sh
+   ```
+3. The script makes a venv, installs requirements, and writes your WSGI file.
+   It prints the remaining manual steps: fill `~/pdf-merger/.env.production`
+   (real `SECRET_KEY`, `SITE_URL=https://<username>.pythonanywhere.com`,
+   your Supabase creds), then in the **Web** tab add a new web app
+   (manual config → newest Python, virtualenv at `~/pdf-merger/venv`,
+   static files `/static/` → `~/pdf-merger/static`), and **Reload**.
+4. Add `https://<username>.pythonanywhere.com/**` to
+   **Supabase → Authentication → URL Configuration → Redirect URLs**.
+
+> The repo is private, so PythonAnywhere needs an SSH deploy key: generate one in
+> its Bash console (`ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N ""`), then add
+> the `.pub` line at GitHub → repo **Settings → Deploy keys** (read-only).
+
 ### Option A — Windows host (Waitress)
 
 ```bash
