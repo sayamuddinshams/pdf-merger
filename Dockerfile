@@ -2,8 +2,7 @@ FROM python:3.14-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    ENV=production \
-    PORT=8000
+    ENV=production
 
 WORKDIR /app
 
@@ -14,4 +13,6 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8000", "--timeout", "120", "wsgi:application"]
+# Bind to $PORT when Render (or any orchestrator) sets it, defaulting to 8000
+# for plain `docker run -p 8000:8000`. Shell form so ${PORT} expands.
+CMD gunicorn -w 1 -b 0.0.0.0:${PORT:-8000} --timeout 120 wsgi:application
